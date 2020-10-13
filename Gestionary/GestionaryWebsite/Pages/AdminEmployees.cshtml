@@ -1,0 +1,38 @@
+﻿@page
+@model GestionaryWebsite.AdminEmployeesModel
+@{
+    ViewData["Title"] = "AdminEmployees";
+    ViewData["UserName"] = @Model.userName;
+}
+
+<h1>Liste des employés</h1>
+
+<div class="container">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nom de l'utilisateur</th>
+                <th>Status</th>
+                <th>Action</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.GetAllUser())
+            {
+                <tr>
+                    <td>@item.Item1.Username</td>
+                    <td>@item.Item2</td>
+                    <td>
+                        <form method="post">
+                            <input type="submit" class="btn btn-danger" value="Renvoyer" />
+                            <input type="hidden" name="EmployeeId" value="@item.Item1.Id" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a asp-page="/AdminAddEmployee" class="float-right btn btn-success">Ajouter un nouvel utilisateur</a>
+</div>
+

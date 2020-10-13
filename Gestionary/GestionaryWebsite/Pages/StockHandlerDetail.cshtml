@@ -1,0 +1,53 @@
+﻿@page "{id:long}"
+@model GestionaryWebsite.StockHandlerDetailModel
+@{
+    ViewData["Title"] = "StockHandler";
+    ViewData["UserName"] = @Model.userName;
+}
+
+<h5>
+    <a asp-page="/Stock">< Retour</a>
+</h5>
+
+<div class="row">
+
+    <div class="col-sm-6">
+        <img src="@Href("~/Pics/" + Model.PicName)" class="img-stock-detail">
+    </div>
+
+    <div class="col-sm-6 margin-auto">
+
+        <form method="post" enctype="multipart/form-data">
+
+            <div class="margin-input">
+                <b>Nom:</b>
+                <input class="input-add input-right" type="text" value="@Model.Name" asp-for="Name" />
+            </div>
+
+            <div class="margin-input">
+                <b>Type:</b>
+                <select class="select-add-product input-right" asp-items="Model.TypeOptions" asp-for="Type"></select>
+            </div>
+
+            <div class="margin-input">
+                <b>Prix:</b>
+                <input class="input-add input-right" asp-for="Price" /> €
+            </div>
+
+            <div class="margin-input">
+                <b>Nombre de produit en stock:</b>
+                <input class="input-add input-right" type="number" value="@Model.Stock" asp-for="Stock" />
+            </div>
+
+
+            <div class="margin-input">
+                <b>Changer l'image du produit:</b>
+                <select class="select-add-product" name="Image" asp-items="Model.Images" asp-for="PicName"></select>
+            </div>
+
+            <input type="hidden" class="input-right" value="@Model.Id" name="Id" />
+            <input type="submit" class="btn btn-primary input-right" value="Sauvegarder" />
+        </form>
+
+    </div>
+</div>

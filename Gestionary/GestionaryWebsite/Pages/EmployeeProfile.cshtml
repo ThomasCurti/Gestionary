@@ -1,0 +1,33 @@
+﻿@page
+@model GestionaryWebsite.EmployeeProfileModel
+@{
+    ViewData["Title"] = "EmployeeProfile";
+    ViewData["UserName"] = @Model.userName;
+}
+<form method="post">
+    <center>
+        <h3 class="margin-input">@Model.userName</h3>
+
+        @if (TempData[EmployeeProfileModel.MessageKey] is string message)
+        {
+            <p><b>@message</b></p>
+        }
+
+        <div class="margin-input">
+            <p class="titles-add">Mot de passe actuel : </p>
+            <input class="input-add" placeholder="Mot de passe actuel" type="password" asp-for="oldPassword" />
+        </div>
+
+        <div class="margin-input">
+            <p class="titles-add">Nouveau mot de passe : </p>
+            <input class="input-add" placeholder="Nouveau mot de passe" type="password" asp-for="newPassword" />
+        </div>
+
+        <div class="margin-input">
+            <p class="titles-add">Confirmer le nouveau mot de passe : </p>
+            <input class="input-add" placeholder="Confirmer le mot de passe" type="password" asp-for="confirmPassword" />
+        </div>
+
+        <input type="submit" class="btn btn-success margin-input" value="Changer de mot de passe">
+    </center>
+</form>

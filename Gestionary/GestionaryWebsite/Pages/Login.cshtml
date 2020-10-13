@@ -1,0 +1,24 @@
+﻿@page
+@model GestionaryWebsite.LoginModel
+@{
+    ViewData["Title"] = "Connexion";
+}
+    <form method="post">
+        <center>
+            <div class="margin-input">
+                <h1>@ViewData["Title"]</h1>
+            </div>
+
+            <div class="margin-input">
+                <input class="input-add" placeholder="Nom d'utilisateur" type="text" asp-for="login" />
+            </div>
+
+            <div class="margin-input">
+                <input class="input-add" placeholder="Mot de passe" type="password" asp-for="password" />
+            </div>
+
+            <input type="submit" class="btn btn-success margin-button-submit" value="Se connecter" />
+
+        </center>
+    </form>
+

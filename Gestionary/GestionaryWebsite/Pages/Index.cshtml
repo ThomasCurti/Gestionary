@@ -1,0 +1,21 @@
+﻿@page
+@model GestionaryWebsite.Pages.IndexModel
+@{
+    ViewData["Title"] = "Home Page";
+    ViewData["UserName"] = @Model.userName;
+}
+
+    <div class="text-center">
+        <h1 class="display-4">Bienvenue</h1>
+        <p>Vous êtes sur la page d'accueil de Gestionary.</p>
+        <p>Si vous recherchez un produit particulier, allez sur la page dédiée aux <a asp-page="/Stock">stocks</a>.</p>
+        @if (ViewData["UserName"] == null)
+        {
+            <p>Si vous êtes un employé, veuillez vous connecter à l'aide du formulaire de <a asp-page="/Login">connexion</a>.</p>
+        }
+        @if (Model.UserNameAdmin != null)
+        {
+            <p><a asp-page="/AdminEmployees">Page Admin</a>.</p>
+        }
+
+    </div>

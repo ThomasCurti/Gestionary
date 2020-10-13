@@ -1,0 +1,48 @@
+﻿@page
+@model GestionaryWebsite.AddProductModel
+@{
+    ViewData["Title"] = "Nouveau produit";
+    ViewData["UserName"] = @Model.userName;
+}
+
+<a asp-page="/Stock">&lt; Retour au stocks</a>
+
+<form method="post">
+    <center>
+        <h1>@ViewData["Title"]</h1>
+
+        @if (TempData[AddProductModel.MessageKey] is string message)
+        {
+            <p><b>@message</b></p>
+        }
+
+        <div class="margin-input">
+            <p class="titles-add">Nom du produit:</p>
+            <input class="input-add" asp-for="Name" />
+        </div>
+
+        <div class="margin-input">
+            <div class="titles-add">Type du produit:</div>
+            <select class="input-add" asp-items="Model.TypeOptions" asp-for="Type"></select>
+        </div>
+
+        <div class="margin-input">
+            <p class="titles-add">Prix en euros:</p>
+            <input class="input-add" asp-for="Price" />
+        </div>
+
+        <div class="margin-input">
+            <p class="titles-add">Stock:</p>
+            <input class="input-add" asp-for="Stock" />
+        </div>
+
+        <div class="margin-input">
+            <p class="titles-add">Image:</p>
+            <select class="input-add" asp-items="Model.Images" asp-for="Image"></select>
+        </div>
+
+        <button class="btn btn-success margin-input">
+            Valider
+        </button>
+    </center>
+</form>

@@ -1,0 +1,45 @@
+﻿@page
+@model GestionaryWebsite.AdminAddEmployeeModel
+@{
+    ViewData["Title"] = "AdminAddEmployee";
+    ViewData["UserName"] = @Model.userName;
+}
+
+<h5>
+    <a asp-page="/AdminEmployees">< Retour</a>
+</h5>
+
+<center> <h1>Ajouter un employé</h1></center>
+
+<form method="post">
+    <center>
+
+        @if (TempData[AdminAddEmployeeModel.MessageKey] is string message)
+        {
+            <p><b>@message</b></p>
+        }
+
+        <div class="margin-input">
+            <p class="titles-add">Nom d'utilisateur:</p>
+            <input class="input-add" placeholder="Nom" type="text" asp-for="newName" />
+        </div>
+
+        <div class="margin-input">
+            <p class="titles-add">Mot de passe:</p>
+            <input type="password" class="input-add" placeholder="Mot de passe" asp-for="newPassword" />
+        </div>
+
+        <div class="margin-input">
+            <p class="titles-add">Confirmation du mot de passe:</p>
+            <input type="password" class="input-add" placeholder="Mot de passe" asp-for="confirmPassword" />
+        </div>
+
+        <div class="margin-input">
+            <input type="checkbox" class="form-check-input" asp-for="newRole">
+            <label class="titles-add"> Admin</label>
+        </div>
+
+        <input type="submit" class="btn btn-success margin-button-submit" value="Valider">
+    </center>
+</form>
+

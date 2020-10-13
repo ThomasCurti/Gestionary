@@ -1,0 +1,71 @@
+﻿@page
+@model GestionaryWebsite.StockModel
+@{
+    ViewData["Title"] = "Stock";
+    ViewData["UserName"] = @Model.userName;
+}
+
+<center><h1>@ViewData["Title"]</h1></center>
+
+<div class="container">
+
+    <form class="form-search-stock">
+        <div>
+            Filtrer par nom : <input type="text" asp-for="SearchString" class="input-search-filter" />
+        </div>
+        <div>
+            Filtrer par type :
+            <select asp-for="TypeFilterInput" asp-items="Model.TypesFilters" onchange="this.form.submit()" class="input-search-filter">
+                <option value="">Tout</option>
+            </select>
+        </div>
+
+        @if (ViewData["UserName"] != null)
+        {
+            <a asp-page="/AddProduct" class="float-right btn btn-success">Ajouter un produit</a>
+        }
+    </form>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Type</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Image</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.StockItems)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price) €
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Stock)
+                    </td>
+                    <td>
+                        <img src="@Href("~/Pics/" + item.PicName)" class="product-image">
+                    </td>
+                    <td>
+                        <a asp-page="/ProductDetail"
+                           asp-route-id="@item.Id"
+                           ><img src="Pics/visibility_icon.png" /></a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>

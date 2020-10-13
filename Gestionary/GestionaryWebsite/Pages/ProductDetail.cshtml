@@ -1,0 +1,45 @@
+﻿@page "{id:long}"
+@model GestionaryWebsite.ProductDetailModel
+@{
+    ViewData["Title"] = "Detail";
+    ViewData["UserName"] = @Model.userName;
+}
+
+<h5>
+    <a asp-page="/Stock">< Retour</a>
+</h5>
+
+<div class="row">
+    
+    <div class="col-sm-6">
+        <img src="@Href("~/Pics/" + Model.PicName)" class="img-stock-detail">
+    </div>
+
+    <div class="col-sm-6 margin-auto">
+        <p>
+            <b>NOM : </b>@Model.Name
+        </p>
+
+        <p>
+            <b>TYPE : </b>@Model.Type
+        </p>
+
+        <p>
+            <b>PRIX : </b>@Model.Price €
+        </p>
+
+        <p>
+            <b>STOCK RESTANT : </b> @Model.Stock
+        </p>
+
+        @if (ViewData["UserName"] != null)
+        {
+            <form method="post">
+                <input type="hidden" value="@Model.Id" name="Id" />
+                <input type="submit" class="btn btn-danger" value="Supprimer cette référence" asp-page-handler="Delete" />
+                <input type="submit" class="btn btn-primary" value="Modifier" asp-page-handler="Edit" />
+            </form>
+        }
+
+    </div>
+</div>

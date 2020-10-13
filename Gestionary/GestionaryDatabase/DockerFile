@@ -1,0 +1,10 @@
+FROM mcr.microsoft.com/mssql/server:latest
+
+ENV SA_PASSWORD='AdminPassword1!'
+ENV ACCEPT_EULA='Y'
+
+COPY ["./GestionaryDatabase", "./"]
+
+RUN /opt/mssql/bin/sqlservr --accept-eula & sleep 25 \
+    && /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P 'AdminPassword1!' -i dbo/Tables/Types.sql -i dbo/Tables/Items.sql -i dbo/Views/StockItems.sql -i dbo/Tables/Roles.sql -i dbo/Tables/Users.sql -i dbo/Tables/Logs.sql -i dbo/Views/UsersRoles.sql -i dbo/Views/ItemsTypes.sql -i dbo/Datas/AddData.sql \
+    && pkill sqlservr

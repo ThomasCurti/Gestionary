@@ -1,0 +1,14 @@
+version: "3"
+services:
+    web:
+        build: 
+            context: ./Gestionary
+            dockerfile: ./GestionaryWebsite/DockerFile
+        ports:
+            - "5000:5000"
+        depends_on:
+            - db
+    db:
+        build: 
+            context: ./Gestionary
+            dockerfile: ./GestionaryDatabase/DockerFile
